@@ -44,4 +44,23 @@ const getArtById = async (id: number): Promise<Artwork | undefined> => {
   }
 };
 
-export { getAllArtworks, getArtById };
+const deleteArtwork = async (id: number): Promise<Object> => {
+  try {
+    await fetch(`${BASE_URL}/${id}`);
+    return { success: true };
+  } catch (error) {
+    return { success: false };
+  }
+};
+
+const createArt = async (data: Artwork): Promise<Artwork | undefined> => {
+  const obj = configObj("POST", data);
+  try {
+    const newArt = await (await fetch(BASE_URL, obj)).json();
+    return newArt;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getAllArtworks, getArtById, deleteArtwork, createArt };
