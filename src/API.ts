@@ -10,6 +10,17 @@ export type Artwork = {
   id: number;
 };
 
+const AuthorizedFetch = (url: string, options: any = {}) => {
+  return fetch(url, {
+    method: options.method,
+    headers: {
+      ...options.headers,
+      Authorization: `Bearer getToken`,
+    },
+    body: options.body,
+  });
+};
+
 const configObj = (method: string, data: Artwork | string = "") => {
   const obj = {
     method: method,
