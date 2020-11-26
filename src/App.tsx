@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { getAllArtworks, Artwork } from "./API";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [arts, setArts] = useState<Artwork[] | undefined>([]);
+
+  const getDataAndSetArts = async () => {
+    //   getAllArtworks().then((d) => setArts(d)) ///// with Promises
+    const data = await getAllArtworks();
+    setArts(data);
+  };
+
+  useEffect(() => {
+    getDataAndSetArts();
+  }, []);
+
+  return <div className="App">Hello World!</div>;
 }
 
 export default App;
