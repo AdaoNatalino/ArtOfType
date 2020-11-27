@@ -1,4 +1,3 @@
-import React from "react";
 import { getAllArtworks } from "./API";
 import { useData } from "./Context";
 import { ACTIONS } from "./reducer";
@@ -8,7 +7,6 @@ function App() {
 
   const getDataAndSetState = async () => {
     const result = await getAllArtworks();
-    console.log("the result of the fetch is:", result);
     dispatch({ type: ACTIONS.ALL, payload: result });
   };
 

@@ -1,7 +1,7 @@
-import React, { useReducer, useContext, ReactNode } from "react";
+import { useReducer, useContext, ReactNode, createContext } from "react";
 import { ArtAction, artReducer, InitialState } from "./reducer";
 
-const DataContext = React.createContext<ValueReturn>({
+const DataContext = createContext<ValueReturn>({
   artState: {
     arts: [],
     artToShow: null,
