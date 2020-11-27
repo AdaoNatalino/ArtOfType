@@ -5,9 +5,9 @@ export type Artwork = {
   title: string;
   year: string;
   medium: string;
-  height: string;
-  width: string;
-  id: number;
+  height: number;
+  width: number;
+  id: string;
 };
 
 const AuthorizedFetch = (url: string, options: any = {}) => {
@@ -34,10 +34,6 @@ const configObj = (method: string, data: Artwork | string = "") => {
 };
 
 const getAllArtworks = async (): Promise<Artwork[] | undefined> => {
-  // With Promises
-  //   return fetch(BASE_URL)
-  //     .then((r) => r.json())
-  //     .catch((e) => console.log(e));
   try {
     const artworks: Artwork[] = await (await fetch(BASE_URL)).json();
     return artworks;

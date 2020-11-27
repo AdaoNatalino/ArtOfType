@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { getAllArtworks, Artwork } from "./API";
+import React from "react";
+import { getAllArtworks } from "./API";
+import { useData } from "./Context";
+import { ACTIONS } from "./reducer";
 
 function App() {
-  const [arts, setArts] = useState<Artwork[] | undefined>([]);
+  const { dispatch } = useData();
 
-  const getDataAndSetArts = async () => {
-    //   getAllArtworks().then((d) => setArts(d)) ///// with Promises
-    const data = await getAllArtworks();
-    setArts(data);
+  const getDataAndSetState = async () => {
+    const result = await getAllArtworks();
+    console.log("the result of the fetch is:", result);
+    dispatch({ type: ACTIONS.ALL, payload: result });
   };
 
-  useEffect(() => {
-    getDataAndSetArts();
-  }, []);
-
-  return <div className="App">Hello World!</div>;
+  return (
+    <div>
+      Hello World!
+      <button onClick={getDataAndSetState}>Click to fetch data</button>
+    </div>
+  );
 }
 
 export default App;
