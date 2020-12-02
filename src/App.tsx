@@ -5,7 +5,7 @@ import { ACTIONS } from "./reducer";
 function App() {
   const { dispatch } = useData();
 
-  const getDataAndSetState = async () => {
+  const getDataAndSetState = async (): Promise<void> => {
     const result = await getAllArtworks();
     dispatch({ type: ACTIONS.ALL, payload: result });
   };
